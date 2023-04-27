@@ -1,0 +1,255 @@
+/*
+--- 01 TYPOGRAPHY SYSTEM
+
+- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line heights
+Default: 1
+Small: 1.05
+Medium: 1.2
+Paragraph default: 1.6
+
+- Letter spacing
+-0.5px
+0.75px
+
+--- 02 COLORS
+
+- Primary: #e67e22
+- Tints:
+#fdf2e9
+#fae5d3
+#eb984e
+
+- Shades: 
+#cf711f
+#45260a
+
+- Accents:
+- Greys
+
+#888
+#767676 (lightest grey allowed on #fff)
+#6f6f6f (lightest grey allowed on #fdf2e9)
+#555
+#333
+
+--- 05 SHADOWS
+
+0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+
+--- 06 BORDER-RADIUS
+
+Default: 9px
+Medium: 11px
+
+--- 07 WHITESPACE
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+:root {
+    --BG-COLOR:#e67e22;
+    --SHADE: #cf711f;
+    --TINT:#eb984e;
+    --COLOR-SEC:#fdf2e9;
+    --COLOR-PRI:#000000;
+    --LEFT-RIGHT-PADDING:10rem;
+    --TOP-BOTTOM-PADDING:0rem;
+    --FONT-FAMILY-PRI:sans-serif;
+    --FONT-FAMILY-SEC:"Poppins";
+}
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+/* ---------------------------------------------header------------------------------------------------------- */
+
+.header{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+    transition: top 0.5s ease-in-out;
+    box-shadow:0 .125rem .25rem rgba(0,0,0,.075) ;
+}
+
+/*------------------------------------------above navbar----------------------------------------------------- */
+
+.above-nav{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    height: 4rem;
+    background-color:var(--BG-COLOR) ;
+    font-size: 1.8rem;
+    padding:var(--TOP-BOTTOM-PADDING) var(--LEFT-RIGHT-PADDING) ;
+}
+
+.my_mail, .my_mobile{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap: 1rem;
+}
+
+a:link,a:hover,a:visited{
+    text-decoration: none;
+}
+
+.my_mail img, .my_mobile img{
+    margin: auto;
+    height: 3rem;
+    width: 3rem;
+}
+
+.my_mail a, .my_mobile a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--COLOR-SEC);
+    text-align: center;
+}
+
+/* ----------------------------------------------------navbar--------------------------------------------------- */
+
+.nav{
+    position: relative;
+    height: 7rem;
+    color: var(--COLOR-PRI);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    padding:var(--TOP-BOTTOM-PADDING) var(--LEFT-RIGHT-PADDING) ;
+    background-color: var(--COLOR-SEC);
+}
+
+.nav_logo{
+    height:6rem;
+    width: auto;
+    align-self: center;
+}
+
+.nav-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    gap: 3.5rem;
+    list-style: none;
+    font-size: 1.8rem;
+    font-weight: 550;
+    font-family:var(--FONT-FAMILY-SEC);
+    letter-spacing: -0.5px;
+    line-height: 1.5;
+}
+
+.nav-list li{
+    align-self: center;
+}
+
+.nav-list li a:link,.nav-list li a:visited{
+    color: var(--COLOR-PRI);
+}
+
+.nav-list li:last-child{
+    border-radius: 20px;
+    background-color:var(--BG-COLOR);
+    padding: 0.5rem 1.5rem;
+}
+
+.nav-list li:last-child a:link{
+    display: inline-block;
+    color: var(--COLOR-SEC);
+}
+
+.hamburger-button{
+    display: none;
+    position:relative;
+    height: 0.5rem;
+    width: 4rem;
+    background-color:var(--BG-COLOR);
+    align-self: center;
+}
+
+.hamburger-button::before{
+    content: '';
+    position: absolute;
+    height: 0.5rem;
+    width: 4rem;
+    background-color:var(--BG-COLOR);
+    top: -10px;
+    left: 0px;
+}
+
+
+.hamburger-button::after{
+    content: '';
+    position: absolute;
+    height: 0.5rem;
+    width: 4rem;
+    background-color:var(--BG-COLOR);
+    top: 10px;
+    left: 0px;
+}
+
+.sidemenu{
+    display: none;
+    position: absolute;
+    top: 3.5rem;
+    left: -17rem;
+    height: max-content;
+    width: 320px;
+}
+
+.menu{
+    width: 100%;
+    margin:0rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--COLOR-SEC);
+    background-color: #e67d22c0;
+}
+/*--------------------------- medai-queries ---------------------*/
+
+@media (max-width: 1300px) {
+    .hamburger-button{
+        display:block;
+    }
+}
+
+@media (max-width: 640px){
+    .above-nav{
+        padding:var(--TOP-BOTTOM-PADDING) 3rem;
+    }
+
+    .nav{
+        padding:var(--TOP-BOTTOM-PADDING) 3rem;
+    }
+}
+
+@media (max-width: 490px){
+    .my_mail{
+        display: none;
+     }
+}
+
+
