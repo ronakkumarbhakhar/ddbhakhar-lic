@@ -1,0 +1,213 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --BG-COLOR:#e67e22;
+    --BG-COLOR-CONTAINER-SEC:#5dc4dd;
+    --BG-COLOR-CONTAINER-PRI:#e1a876;
+    --SHADE: #cf711f;
+    --TINT:#eb984e;
+    --COLOR-SEC:#fdf2e9;
+    --COLOR-PRI:#000000;
+    --LEFT-RIGHT-PADDING:10rem;
+    --TOP-BOTTOM-PADDING:0rem;
+    --FONT-FAMILY-PRI:sans-serif;
+    --FONT-FAMILY-SEC:"Poppins";
+}
+
+html{
+    font-size: 62.5%;
+}
+
+.login_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background:linear-gradient(45deg,var(--BG-COLOR-CONTAINER-SEC),var(--BG-COLOR-CONTAINER-PRI));
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #0000006d;
+    background-color: rgba(250, 235, 215, 0.234);
+    border-radius: 5px;
+    padding: 3rem;
+    position: relative;
+    height: 35rem;
+    width: 30rem;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.495);
+}
+
+.img_container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateY(-55%) translateX(-50%);
+    background:linear-gradient(45deg,var(--BG-COLOR-CONTAINER-SEC),var(--BG-COLOR-CONTAINER-PRI));
+    border-radius: 50%;
+    filter: blur(0.5px);
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.495);
+}
+
+.text{
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: sans-serif;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.495);
+    margin: 3rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 3rem;
+}
+
+.input_field{
+    height: 4rem;
+    width: 25rem;
+    border:1px solid var(--BG-COLOR-CONTAINER-PRI);
+    border-left:3px solid var(--BG-COLOR-CONTAINER-SEC);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.495);
+    font-size: 2.1rem;
+    font-family: sans-serif;
+    font-weight: 400;
+    transition: all 0.3s ease-in-out 0.1s;
+    text-align: center;
+}
+
+.input_field:hover{
+    transform: scale(1.1);
+}
+
+.submit{
+    height: 4rem;
+    width: 15rem;
+    border:0px solid var(--BG-COLOR-CONTAINER-PRI);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.495);
+    font-size: 2.5rem;
+    font-family: sans-serif;
+    font-weight: 400;
+    background-color: #ecd28494;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out 0.1s;
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.495);
+}
+
+.submit:hover{
+    transform: scale(1.2);
+}
+
+/* modal */
+.modal_container{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color:transparent;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease-in-out 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal_container-visible{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.3s ease-in-out 0.1s;
+}
+
+@keyframes motion {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.modal{
+    height: 200px;
+    width: 310px;
+    border-radius: 5px;
+    background:linear-gradient(45deg,var(--BG-COLOR-CONTAINER-SEC),var(--BG-COLOR-CONTAINER-PRI));
+    position: relative;
+    font-size: 25px;
+    font-family: sans-serif;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.495);
+    animation:motion 1s normal backwards ease-in-out 0.1s 1;
+}
+
+/* loader */
+.loader_container{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: #75757594;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease-in-out 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader_container-visible{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.3s ease-in-out 0.1s;
+}
+
+.loader{
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: rgba(245, 245, 245, 0.814);
+    position: relative;
+}
+
+@keyframes change {
+    0% {
+        transform:translate(-50%,-50%) rotateZ(0deg);
+    }
+    100% {
+        transform:translate(-50%,-50%) rotateZ(360deg);
+    }
+}
+
+.loader::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 75%;
+    width: 75%;
+    box-sizing: border-box;
+    border-radius: 50%;
+    transform:translate(-50%,-50%) rotateZ(0deg);
+    border:9px solid transparent;
+    border-top:9px solid var(--SHADE);
+    z-index: 1;
+    animation: change 0.8s linear both normal 0.2s infinite;
+}

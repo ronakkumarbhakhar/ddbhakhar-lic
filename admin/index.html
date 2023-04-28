@@ -35,25 +35,19 @@
             <nav class="nav">
                 <img src="img/logo.png" alt="logo" class="nav_logo">
                 <ul class="nav-list">
-                    <li><a href="#Home">Home</a></li>
-                    <li><a href="#Who">Who</a></li>
-                    <li><a href="#What">What We Offer</a></li>
-                    <li><a href="#Whom">For Whom</a></li>
-                    <li><a href="#Achievements">Achievements</a></li>
-                    <li><a href="#Testimonials">Testimonials</a></li>
-                    <li><a href="#Register">Join Us/Buy policy</a></li>
+                    <li><a href="../index.html#Home">Home</a></li>
+                    <li><a href="#Footer">Contact us</a></li>
+                    <li><a href="#" id="auth_btn1">Logout</a></li>
+                    <li><a href="../index.html#Register">Register Now</a></li>
                 </ul>
                 <div class="hamburger-button" id="hamburger">
                     <div class="sidemenu">
                         <div class="menu">
                             <ul class="contact-us_content list">
-                                <li class="contact-us_list-item"><a href="#Home">Home</a></li>
-                                <li class="contact-us_list-item"><a href="#Who">Who</a></li>
-                                <li class="contact-us_list-item"><a href="#What">What we offer</a></li>
-                                <li class="contact-us_list-item"><a href="#Whom">For whom</a></li>
-                                <li class="contact-us_list-item"><a href="#Testimonials">Testimonials</a></li>
-                                <li class="contact-us_list-item"><a href="#Achievements">Achievements</a></li>
-                                <li class="contact-us_list-item"><a href="#Register">Register Now</a></li>
+                                <li class="contact-us_list-item"><a href="../index.html#Home">Home</a></li>
+                                <li class="contact-us_list-item"><a href="#Footer">Contact us</a></li>
+                                <li class="contact-us_list-item"><a href="#" id="auth_btn2">Logout</a></li>
+                                <li class="contact-us_list-item"><a href="../index.html#Register">Register Now</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,54 +56,52 @@
         </header>
         <!-- admin section -->
         <section class="admin_container">
+            <div class="loader_container loader_container-visible">
+                <div class="loader">
+                </div>
+            </div>
+            <div class="modal_container">
+                <div class="modal">
+                </div>
+            </div>
             <div class="btn_container">
                 <button type="submit" class="main_btn btn_active" id="policy_btn">Policy Buyer</button>
                 <button type="submit" class="main_btn" id="agent_btn">Want to Join</button>
             </div>
-            <div class="policy_container container_visible">
-                <table class="table">
-                    <tr class="row heading_row">
-                      <th class="column_heading">Agent Name</th>
-                      <th class="column_heading">Contact</th>
-                      <th class="column_heading">Email</th>
-                      <th class="column_heading"><Button id="delete" class="delete_btn">Delete</Button></th>
-                    </tr>
-                    <tr class="row" id="">
-                      <td class="col name_data">Alfreds Futterkiste</td>
-                      <td class="col"><a class="link_data" href="tel:7877943338">7877943338</a></td>
-                      <td class="col"><a class="link_data" href="mailto:xyz@gmail.com">xyz@gmail.com</a></td>
-                      <td class="col checkbox_data"><input type="checkbox" name="delete" value="id"></td>
-                    </tr>
-                    <tr class="row" id="">
-                      <td class="col name_data">Centro comercial Moctezuma</td>
-                      <td class="col"><a class="link_data" href="tel:7877943338">7877943338</a></td>
-                      <td class="col"><a class="link_data" href="mailto:xyz@gmail.com">xyz@gmail.com</a></td>
-                      <td class="col checkbox_data"><input type="checkbox" name="delete" value="id"></td>
-                    </tr>
-                  </table>
-            </div>
-
-            <div class="agent_container">
-                <table class="table">
-                    <tr class="row heading_row">
-                      <th class="column_heading">Policy Buyer Name</th>
-                      <th class="column_heading">Contact</th>
-                      <th class="column_heading">Email</th>
-                      <th class="column_heading"><Button id="delete" class="delete_btn">Delete</Button></th>
-                    </tr>
-                    <tr class="row" id="">
-                      <td class="col name_data">Alfreds Futterkiste</td>
-                      <td class="col"><a class="link_data" href="tel:7877943338">7877943338</a></td>
-                      <td class="col"><a class="link_data" href="mailto:xyz@gmail.com">xyz@gmail.com</a></td>
-                      <td class="col checkbox_data"><input type="checkbox" name="delete" value="id"></td>
-                    </tr>
-                    <tr class="row" id="">
-                      <td class="col name_data">Centro comercial Moctezuma</td>
-                      <td class="col"><a class="link_data" href="tel:7877943338">7877943338</a></td>
-                      <td class="col"><a class="link_data" href="mailto:xyz@gmail.com">xyz@gmail.com</a></td>
-                      <td class="col checkbox_data"><input type="checkbox" name="delete" value="id"></td>
-                    </tr>
-                  </table>
+            <div class="overflow_handler">
+                <div class="policy_container container_visible">
+                    <!-- <table class="table policy_table">
+                        <tr class="row heading_row">
+                          <th class="column_heading">Agent Name</th>
+                          <th class="column_heading">Contact</th>
+                          <th class="column_heading">Email</th>
+                          <th class="column_heading"><Button id="delete" class="delete_btn">Delete</Button></th>
+                        </tr>
+                        <tr class="row" id="">
+                          <td class="col name_data">Alfreds Futterkiste</td>
+                          <td class="col"><a class="link_data" href="tel:7877943338">7877943338</a></td>
+                          <td class="col"><a class="link_data" href="mailto:xyz@gmail.com">xyz@gmail.com</a></td>
+                          <td class="col checkbox_data"><input type="checkbox" name="delete" value="id"></td>
+                        </tr>
+                    </table> -->
+                </div>
+    
+                <div class="agent_container">
+                    <!-- <table class="table agent_table">
+                        <tr class="row heading_row">
+                          <th class="column_heading">Policy Buyer Name</th>
+                          <th class="column_heading">Contact</th>
+                          <th class="column_heading">Email</th>
+                          <th class="column_heading"><Button id="delete" class="delete_btn">Delete</Button></th>
+                        </tr>
+                        <tr class="row" id="">
+                          <td class="col name_data">Centro comercial Moctezuma</td>
+                          <td class="col"><a class="link_data" href="tel:7877943338">7877943338</a></td>
+                          <td class="col"><a class="link_data" href="mailto:xyz@gmail.com">xyz@gmail.com</a></td>
+                          <td class="col checkbox_data"><input type="checkbox" name="delete" value="id"></td>
+                        </tr>
+                    </table> -->
+                </div>
             </div>
         </section>
         <!-- contact-us -->
@@ -125,13 +117,13 @@
                     <div class="boxes_contact-us quick-links">
                         <p class="contact_boxes_heading">Quick Links</p>
                         <ul class="contact-us_content list">
-                            <li class="contact-us_list-item"><a href="#Home">Home</a></li>
-                            <li class="contact-us_list-item"><a href="#Who">Who</a></li>
-                            <li class="contact-us_list-item"><a href="#What">What we offer</a></li>
-                            <li class="contact-us_list-item"><a href="#Whom">For whom</a></li>
-                            <li class="contact-us_list-item"><a href="#Testimonials">Testimonials</a></li>
-                            <li class="contact-us_list-item"><a href="#Achievements">Achievements</a></li>
-                            <li class="contact-us_list-item"><a href="#Register">Register Now</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#Home">Home</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#Who">Who</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#What">What we offer</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#Whom">For whom</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#Testimonials">Testimonials</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#Achievements">Achievements</a></li>
+                            <li class="contact-us_list-item"><a href="../index.html#Register">Register Now</a></li>
                         </ul>
                     </div>
                     <div class="boxes_contact-us">
@@ -153,14 +145,6 @@
                 </div>
             </div>
         </section>
-        <div class="loader_container">
-            <div class="loader">
-            </div>
-        </div>
-        <div class="modal_container">
-            <div class="modal">
-            </div>
-        </div>
         <!-- copyright -->
         <!-- <section class="copyright">
 

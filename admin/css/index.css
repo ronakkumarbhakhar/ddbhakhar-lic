@@ -60,6 +60,7 @@ Medium: 11px
     --BG-COLOR:#e67e22;
     --SHADE: #cf711f;
     --TINT:#eb984e;
+    --TINT-BG:#eb974e74;
     --COLOR-SEC:#ffffff;
     --COLOR-PRI:#000000;
     --LEFT-RIGHT-PADDING:10rem;
@@ -90,7 +91,7 @@ body{
     position: relative;
     margin:13rem 10rem 3rem;
     border-top: 2px solid var(--BG-COLOR);
-    min-height: calc(100vh - 13rem);
+    min-height: calc(50vh);
     border-radius: 5px;
     padding: 0rem 2rem;
 }
@@ -223,6 +224,69 @@ body{
     width: 75%;
 }
 
+@media (max-width: 1000px){
+    .admin_container{
+        margin:0rem;
+        margin: auto;
+        margin-top:13rem ;
+    }
+
+    .container_visible{
+        width: 70rem;
+    }
+
+    .overflow_handler{
+        padding:0rem 2rem 2rem;
+        margin-top: 3rem;
+        overflow-x: scroll;
+        overflow-y: visible;
+        scrollbar-color: var(--SHADE);
+        --webkit-scrollbar-color: var(--SHADE);
+        scrollbar-width: 50px;
+        --webkit-scrollbar-width: 50px;
+        --webkit-scrollbar-base-color: var(--TINT);
+        border-radius: 5px;
+        border: 1px solid var(--BG-COLOR)
+    }
+}
+
+@media (max-width: 550px){
+    .btn_container{
+        transform: translate(2rem,-50%);
+        gap: 1rem;
+    } 
+}
+@media (max-width: 412px){
+    .overflow_handler{
+        padding:0rem 1rem 2rem;
+    }
+    .admin_container{
+       padding: 0.5rem;
+    }
+    .btn_container{
+        transform: translate(1rem,-55%);
+        gap: 0.5rem;
+    } 
+
+    .main_btn{
+        height: 3rem;
+        font-size: 2rem;
+        padding:0rem 0.3rem;
+    }
+}
+
+@media (max-width: 302px){
+    .btn_container{
+        transform: translate(0.5rem,-55%);
+        gap: 0.2rem;
+    } 
+
+    .main_btn{
+        height: 3rem;
+        font-size: 2rem;
+        padding:0rem 0.3rem;
+    }
+}
 /*-------------------------------- contact us------------------------------ */
 
 
@@ -333,10 +397,10 @@ body{
 /* ------------------------------loader--------------------- */
 
 .loader_container{
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    background-color: #75757594;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color:transparent;
     top: 0;
     left: 0;
     visibility: hidden;
@@ -389,8 +453,8 @@ body{
 
 .modal_container{
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color:transparent;
     top: 0;
     left: 0;

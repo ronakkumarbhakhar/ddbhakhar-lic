@@ -1,14 +1,13 @@
 
 'use strict'
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js'
-
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js';
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js'
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js';
 
 // Add Firebase products that you want to use
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
-import { getFirestore ,doc, addDoc,setDoc, collection } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js';
+import { getFirestore ,doc, addDoc,setDoc, collection} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js';
 
 
 const firebaseConfig = {

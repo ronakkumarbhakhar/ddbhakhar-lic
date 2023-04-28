@@ -7,8 +7,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebas
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js'
 
 // Add Firebase products that you want to use
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
-import { getFirestore ,doc, addDoc,setDoc, collection } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+import { getAuth,onAuthStateChanged,signOut } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
+import { getFirestore ,doc, addDoc,setDoc,getDocs, collection ,query, where} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js';
 
 
 const firebaseConfig = {
@@ -25,160 +25,129 @@ measurementId: "G-PF5T84KXQZ"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const auth = getAuth(app);
 
 
-//------------------------------ fetch and delete logic-------------------------------//
-// let loader=document.querySelector('.loader_container');
-// let modal=document.querySelector('.modal_container');
-// let form =document.getElementById('form')
-// let mobile_input=document.querySelector('#mobile');
-// mobile_input.value="+91";
-// mobile_input=mobile_input.value;
+let auth_btn1=document.querySelector("#auth_btn1");
+let auth_btn2=document.querySelector("#auth_btn2");
+let auth_parent1=auth_btn1.parentElement;
+let auth_parent2=auth_btn2.parentElement;
 
-// let submit= document.getElementById('submit');
-// submit.addEventListener('click',async (e)=>{
-//     console.log('submited');
-//     let first_name=document.querySelector('#first_name').value;
-//     let last_name=document.querySelector('#last_name').value;
-//     let mobile=document.querySelector('#mobile').value;
-//     let mobile_input=document.querySelector('#mobile');
-//     const formData = new FormData(form);
-//     let no_len=true;
-//     console.log(mobile.length)
-//     if(mobile.length!=13 ){
-//         no_len=false;
-//         if(mobile.length==10 && isFinite(Number(mobile))){
-//             console.log(isFinite(Number(mobile)))
-//             if(first_name==" " || last_name==" " || mobile=="+91" ){
-//                 console.log("poor job validation 1 0")
-//             }
-//             else if(mobile[0]=='+' && mobile[1]=='9' && mobile[2]=='1')
-//             {
-//                 mobile_input.setCustomValidity("enter valid mobile number");
-//                 console.log("poor job validation 1 1");
-//             }
-//             else{
-//                 mobile_input.value=`+91${mobile}`;
-//                 console.log("good job 1")
-//                 loader.classList.add('loader_container-visible');
-//             try {
-//                 const docRef = await setDoc(doc(collection(db, "users"),`${formData.get('first_name')}-${formData.get('last_name')}-${formData.get('mobile')}`), {
-//                     mobile:formData.get('mobile'),
-//                     first_name:formData.get('first_name'),
-//                     last_name:formData.get('last_name'),
-//                     email:formData.get('email'),
-//                     choice:formData.get('choice'),
-//                 }).then(function(d){
-//                     loader.classList.remove('loader_container-visible');
-//                     modal.children[0].innerHTML="Registration successful";
-//                     modal.classList.add('modal_container-visible');
-//                     setTimeout(()=>{
-//                         modal.classList.remove('modal_container-visible');
-//                     },2500)
-//                     console.log("docref:",d);
-//                 });
-//                 console.log("registration successfull");
-//             }
-//             catch (error) {
-//                 modal.children[0].innerHTML="Registration failed";
-//                 modal.children[0].style.backgroundColor='tomato';
-//                 modal.classList.add('modal_container-visible');
-//                 setTimeout(()=>{
-//                     modal.classList.remove('modal_container-visible');
-//                 },2500)
-//                 console.error("Error adding document: ", error);
-//             }
-//             }
-//         }
-//         else{
-//             mobile_input.setCustomValidity("enter valid mobile number");
-//             console.log("poor job validation 1 2");
-//         }
-//     }
-//     else if(first_name==" " || last_name==" " || mobile=="+91" ){
-//         console.log("poor job validation 2 0")
-//     }
-//     else{
-//         console.log("good job 2")
-//         if(mobile[0]=='+' && mobile[1]=='9' && mobile[2]=='1')
-//         {
-//             loader.classList.add('loader_container-visible');
-//             try {
-//                 const docRef = await setDoc(doc(collection(db, "users"),`${formData.get('first_name')}-${formData.get('last_name')}-${formData.get('mobile')}`), {
-//                     mobile:formData.get('mobile'),
-//                     first_name:formData.get('first_name'),
-//                     last_name:formData.get('last_name'),
-//                     email:formData.get('email'),
-//                     choice:formData.get('choice'),
+let agent_row_content="";
+let policy_row_content="";
 
-                
-//                 }).then(function(doc){
-//                     loader.classList.remove('loader_container-visible');
-//                     modal.children[0].innerHTML="Registration successful";
-//                     modal.classList.add('modal_container-visible');
-//                     setTimeout(()=>{
-//                         modal.classList.remove('modal_container-visible');
-//                     },3000)
-//                     console.log("docref:",doc);
-//                 });
-//                 console.log("Document written with ID: ", docRef);
-//             }
-//             catch (error) {
-//                 modal.children[0].innerHTML="Registration failed";
-//                 modal.children[0].style.backgroundColor='tomato';
-//                 modal.classList.add('modal_container-visible');
-//                 setTimeout(()=>{
-//                     modal.classList.remove('modal_container-visible');
-//                 },2500)
-//                 console.error("Error adding document: ", error);
-//             }
-//         }
-//         else{
-//             console.log(" poor job validation 3 0")
-//         }
-//     }
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
     
-// });
+        const uid = user;
+        console.log(user.uid)
+        
+        let loader=document.querySelector('.loader_container');
+        let modal=document.querySelector('.modal_container');
 
-// --------------------------------btn and table container manipulation logic-----------------------//
+        //------------------------------ fetch and delete logic-------------------------------//
+        let ref=collection(db,"users");
+        const agentQuery = query(ref, where("choice", "==", "Agent"));
+        const agentSnapshot = await getDocs(agentQuery);
+        await agentSnapshot.forEach((doc) => {
+            agent_row_content+=`<tr class="row" id="">
+            <td class="col name_data">${doc.data().first_name} ${doc.data().last_name}</td>
+            <td class="col"><a class="link_data" href="tel:${doc.data().mobile}">${doc.data().mobile}</a></td>
+            <td class="col"><a class="link_data" href="mailto:${doc.data().email}">${doc.data().email}</a></td>
+            </tr>`
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+        let agent_table=document.querySelector('.agent_container');
+        agent_table.innerHTML+=`<table class="table policy_table">
+        <tr class="row heading_row">
+          <th class="column_heading">Agent Name</th>
+          <th class="column_heading">Contact</th>
+          <th class="column_heading">Email</th>
+        </tr>
+        ${agent_row_content}
+        </table>`;
+        
+        const policyQuery = query(ref, where("choice", "==", "Policy"));
+        const policySnapshot = await getDocs(policyQuery);
+        await policySnapshot.forEach((doc) => {
+            policy_row_content+=`<tr class="row" id="">
+            <td class="col name_data">${doc.data().first_name} ${doc.data().last_name}</td>
+            <td class="col"><a class="link_data" href="tel:${doc.data().mobile}">${doc.data().mobile}</a></td>
+            <td class="col"><a class="link_data" href="mailto:${doc.data().email}">${doc.data().email}</a></td>
+            </tr>`
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+        let policy_table=document.querySelector('.policy_container');
+        policy_table.innerHTML+=`<table class="table policy_table">
+        <tr class="row heading_row">
+          <th class="column_heading">Policy Buyer Name</th>
+          <th class="column_heading">Contact</th>
+          <th class="column_heading">Email</th>
+        </tr>
+        ${policy_row_content}
+        </table>`;
+        loader.classList.remove("loader_container-visible"); 
+        // ------------------------------------logic end--------------------------------------//
 
-let policy_btn=document.querySelector("#policy_btn");
-console.log(policy_btn)
-let agent_btn=document.querySelector("#agent_btn");
-console.log(agent_btn)
-let policy_container=document.querySelector(".policy_container");
-console.log(policy_container)
-let agent_container=document.querySelector(".agent_container");
-console.log(agent_container)
+        auth_btn2.addEventListener("click",async (e)=>{
+            signOut(auth).then(() => {
+                console.log("Sign-out successful.");
+              }).catch((error) => {
+                console.log("Sign-out failed error",error);
+              });
+        });
+        auth_btn1.addEventListener("click",async (e)=>{
+            signOut(auth).then(() => {
+                console.log("Sign-out successful.");
+              }).catch((error) => {
+                console.log("Sign-out failed error",error);
+              });
+        });
+    
+        // --------------------------------btn and table container manipulation logic-----------------------//
 
-policy_btn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    if(!policy_btn.classList.contains('btn_active')){
-        policy_btn.classList.add('btn_active');
-    }
-    if(agent_btn.classList.contains('btn_active')){
-        agent_btn.classList.remove('btn_active');
-    }
-    if(!policy_container.classList.contains('container_visible')){
-        policy_container.classList.add('container_visible');
-    }
-    if(agent_container.classList.contains('container_visible')){
-        agent_container.classList.remove('container_visible');
-    }
-});
+        let policy_btn=document.querySelector("#policy_btn");
+        let agent_btn=document.querySelector("#agent_btn");
+        let policy_container=document.querySelector(".policy_container");
+        let agent_container=document.querySelector(".agent_container");
 
-agent_btn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    if(!agent_btn.classList.contains('btn_active')){
-        agent_btn.classList.add('btn_active');
-    }
-    if(policy_btn.classList.contains('btn_active')){
-        policy_btn.classList.remove('btn_active');
-    }
-    if(!agent_container.classList.contains('container_visible')){
-        agent_container.classList.add('container_visible');
-    }
-    if(policy_container.classList.contains('container_visible')){
-        policy_container.classList.remove('container_visible');
-    }
+        policy_btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            if(!policy_btn.classList.contains('btn_active')){
+                policy_btn.classList.add('btn_active');
+            }
+            if(agent_btn.classList.contains('btn_active')){
+                agent_btn.classList.remove('btn_active');
+            }
+            if(!policy_container.classList.contains('container_visible')){
+                policy_container.classList.add('container_visible');
+            }
+            if(agent_container.classList.contains('container_visible')){
+                agent_container.classList.remove('container_visible');
+            }
+        });
+
+        agent_btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            if(!agent_btn.classList.contains('btn_active')){
+                agent_btn.classList.add('btn_active');
+            }
+            if(policy_btn.classList.contains('btn_active')){
+                policy_btn.classList.remove('btn_active');
+            }
+            if(!agent_container.classList.contains('container_visible')){
+                agent_container.classList.add('container_visible');
+            }
+            if(policy_container.classList.contains('container_visible')){
+                policy_container.classList.remove('container_visible');
+            }
+        });
+    } else {
+        auth_parent1.removeChild(auth_btn1);
+        auth_parent2.removeChild(auth_btn2);
+        window.location.assign("../authentication/index.html");
+        console.log("not logged in")
+  }
 });
